@@ -1,7 +1,9 @@
 #  node.js RPM spec
-* node.js rpm spec : https://github.com/kazuhisya/nodejs-rpm
+* node.js rpm spec : https://github.com/vast-engineering/nodejs-rpm
 * node.js source   : http://nodejs.org/dist/
 
+# Vast Specifics
+Tailored for Vast Specific paths to allow multiple major nodejs versions to co-exist peacefully under /data
 
 # Building the RPM
 
@@ -27,7 +29,7 @@ $ sudo yum install -y yum-utils rpmdevtools make
 git clone and make:
 
 ```bash
-$ git clone https://github.com/kazuhisya/nodejs-rpm.git
+$ git clone https://github.com/vast-engineering/nodejs-rpm.git
 $ cd nodejs-rpm
 $ sudo yum-builddep ./nodejs.spec
 $ make rpm
