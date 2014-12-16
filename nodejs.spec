@@ -3,7 +3,7 @@
 
 Name:          %{_base}js
 Version:       0.10.33
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       Node.js is a server-side JavaScript environment that uses an asynchronous event-driven model.
 Packager:      Kazuhisa Hara <kazuhisya@gmail.com>
 Group:         Development/Libraries
@@ -11,7 +11,7 @@ License:       MIT License
 URL:           http://nodejs.org
 Source0:       %{url}/dist/v%{version}/%{_base}-v%{version}.tar.gz
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-tmp
-Prefix:        /usr
+Prefix:        /data/%{_base}js-0.10
 BuildRequires: redhat-rpm-config
 BuildRequires: tar
 BuildRequires: gcc
@@ -21,6 +21,7 @@ BuildRequires: openssl-devel
 BuildRequires: libstdc++-devel
 BuildRequires: zlib-devel
 BuildRequires: gzip
+BuildRequires: rpmdevtools
 
 %if "%{_dist_ver}" == ".el5"
 # require EPEL
@@ -159,6 +160,8 @@ rm -rf $RPM_SOURCE_DIR/%{_base}-v%{version}-linux-%{_node_arch}
 %{_includedir}/node/
 
 %changelog
+* Mon Dec 15 2014 J. Ryan Earl <jre@vast.com>
+- Made vast specific, added rpmdevtools requirement
 * Fri Oct 24 2014 Kazuhisa Hara <kazuhisya@gmail.com>
 - Updated to node.js version 0.10.33
 * Wed Sep 17 2014 Kazuhisa Hara <kazuhisya@gmail.com>
