@@ -3,7 +3,7 @@
 
 Name:          %{_base}js10
 Version:       0.10.33
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       Node.js is a server-side JavaScript environment that uses an asynchronous event-driven model.
 Packager:      Kazuhisa Hara <kazuhisya@gmail.com>
 Group:         Development/Libraries
@@ -22,6 +22,11 @@ BuildRequires: libstdc++-devel
 BuildRequires: zlib-devel
 BuildRequires: gzip
 BuildRequires: rpmdevtools
+
+%define   _prefix /data/%{_base}js-0.10
+%define   _includedir %{_prefix}/include
+%define   _bindir %{_prefix}/bin
+%define   _libdir %{_prefix}/lib
 
 %if "%{_dist_ver}" == ".el5"
 # require EPEL
@@ -50,7 +55,7 @@ License:       MIT License
 URL:           http://nodejs.org
 Obsoletes:     npm
 Provides:      npm
-Requires:      nodejs
+Requires:      %{name}
 
 %description npm
 Node.js is a server-side JavaScript environment that uses an asynchronous event-driven model.
