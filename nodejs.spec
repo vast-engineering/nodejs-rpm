@@ -102,26 +102,26 @@ make binary %{?_smp_mflags}
 
 pushd $RPM_SOURCE_DIR
 mv $RPM_BUILD_DIR/%{_base}-v%{version}/%{_base}-v%{version}-linux-%{_node_arch}.tar.gz .
-rm  -rf %{_base}-v%{version}
+rm -rf %{_base}-v%{version}
 tar zxvf %{_base}-v%{version}-linux-%{_node_arch}.tar.gz
 popd
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir  -p $RPM_BUILD_ROOT/usr
-cp -Rp $RPM_SOURCE_DIR/%{_base}-v%{version}-linux-%{_node_arch}/* $RPM_BUILD_ROOT/usr/
-mkdir -p $RPM_BUILD_ROOT/usr/share/doc/%{_base}-v%{version}/
+mkdir  -p $RPM_BUILD_ROOT/%{_prefix}
+cp -Rp $RPM_SOURCE_DIR/%{_base}-v%{version}-linux-%{_node_arch}/* $RPM_BUILD_ROOT/%{_prefix}
+mkdir -p $RPM_BUILD_ROOT/%{_prefix}/share/doc/%{_base}-v%{version}/
 
 for file in ChangeLog LICENSE README.md ; do
-    mv $RPM_BUILD_ROOT/usr/$file $RPM_BUILD_ROOT/usr/share/doc/%{_base}-v%{version}/
+    mv $RPM_BUILD_ROOT/%{_prefix}/$file $RPM_BUILD_ROOT/%{_prefix}/share/doc/%{_base}-v%{version}/
 done
-mkdir -p $RPM_BUILD_ROOT/usr/share/%{_base}js
-mv $RPM_SOURCE_DIR/%{_base}-v%{version}-linux-%{_node_arch}.tar.gz $RPM_BUILD_ROOT/usr/share/%{_base}js/
+mkdir -p $RPM_BUILD_ROOT/%{_prefix}/share/%{_base}js
+mv $RPM_SOURCE_DIR/%{_base}-v%{version}-linux-%{_node_arch}.tar.gz $RPM_BUILD_ROOT/%{_prefix}/share/%{_base}js/
 
 # prefix all manpages with "npm-"
-pushd $RPM_BUILD_ROOT/usr/lib/node_modules/npm/man/
+pushd $RPM_BUILD_ROOT/%{_libdir}/node_modules/npm/man/
 for dir in *; do
-    mkdir -p $RPM_BUILD_ROOT/usr/share/man/$dir
+    mkdir -p $RPM_BUILD_ROOT/%{_prefix}/share/man/$dir
     pushd $dir
     for page in *; do
         if [[ $page != npm* ]]; then
@@ -129,7 +129,7 @@ for dir in *; do
     fi
     done
     popd
-    cp $dir/* $RPM_BUILD_ROOT/usr/share/man/$dir
+    cp $dir/* $RPM_BUILD_ROOT/%{_prefix}/share/man/$dir
 done
 popd
 
@@ -144,7 +144,7 @@ rm -rf $RPM_SOURCE_DIR/%{_base}-v%{version}-linux-%{_node_arch}
 %{_bindir}/node
 
 %doc
-/usr/share/man/man1/node.1.gz
+%{_prefix}/share/man/man1/node.1.gz
 
 %files binary
 %defattr(-,root,root,-)
@@ -152,19 +152,21 @@ rm -rf $RPM_SOURCE_DIR/%{_base}-v%{version}-linux-%{_node_arch}
 
 %files npm
 %defattr(-,root,root,-)
-%{_prefix}/lib/node_modules/npm
+%{_libdir}/node_modules/npm
 %{_bindir}/npm
 
 %doc
-/usr/share/man/man1/npm*
-/usr/share/man/man3
-/usr/share/man/man5
-/usr/share/man/man7
+%{_prefix}/share/man/man1/npm*
+%{_prefix}/share/man/man3
+%{_prefix}/share/man/man5
+%{_prefix}/share/man/man7
 
 %files devel
 %{_includedir}/node/
 
 %changelog
+* Tue Dec 16 2014 J. Ryan Earl <jre@vast.com>
+- cleaning up hardcoded paths to use directory macros
 * Mon Dec 15 2014 J. Ryan Earl <jre@vast.com>
 - Made vast specific, added rpmdevtools requirement
 * Fri Oct 24 2014 Kazuhisa Hara <kazuhisya@gmail.com>
