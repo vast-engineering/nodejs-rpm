@@ -11,7 +11,6 @@ License:       MIT License
 URL:           http://nodejs.org
 Source0:       %{url}/dist/v%{version}/%{_base}-v%{version}.tar.gz
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-tmp
-Prefix:        /data/%{_base}js-0.10
 BuildRequires: redhat-rpm-config
 BuildRequires: tar
 BuildRequires: gcc
