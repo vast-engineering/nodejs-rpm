@@ -93,11 +93,11 @@ if [ -z %{_node_arch} ];then
   exit 1
 fi
 
+#    --shared-openssl-includes=%{_includedir} \
+#    --shared-zlib-includes=%{_includedir}
 ./configure \
     --shared-openssl \
-#    --shared-openssl-includes=%{_includedir} \
-    --shared-zlib \
-#    --shared-zlib-includes=%{_includedir}
+    --shared-zlib 
 make binary %{?_smp_mflags}
 
 pushd $RPM_SOURCE_DIR
@@ -144,7 +144,7 @@ rm -rf $RPM_SOURCE_DIR/%{_base}-v%{version}-linux-%{_node_arch}
 %{_bindir}/node
 
 %doc
-%{_prefix}/share/man/man1/node.1.gz
+%{_prefix}/share/man/man1/node.1
 
 %files binary
 %defattr(-,root,root,-)
