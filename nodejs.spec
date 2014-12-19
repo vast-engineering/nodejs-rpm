@@ -93,8 +93,6 @@ if [ -z %{_node_arch} ];then
   exit 1
 fi
 
-#    --shared-openssl-includes=%{_includedir} \
-#    --shared-zlib-includes=%{_includedir}
 ./configure \
     --shared-openssl \
     --shared-zlib 
