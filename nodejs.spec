@@ -2,7 +2,7 @@
 %define   _dist_ver %(sh /usr/lib/rpm/redhat/dist.sh)
 
 Name:          %{_base}js10
-Version:       0.10.34
+Version:       0.10.35
 Release:       1%{?dist}
 Summary:       Node.js is a server-side JavaScript environment that uses an asynchronous event-driven model.
 Packager:      Kazuhisa Hara <kazuhisya@gmail.com>
@@ -22,11 +22,6 @@ BuildRequires: libstdc++-devel
 BuildRequires: zlib-devel
 BuildRequires: gzip
 BuildRequires: rpmdevtools
-
-%define   _prefix /data/%{_base}js-0.10
-%define   _includedir %{_prefix}/include
-%define   _bindir %{_prefix}/bin
-%define   _libdir %{_prefix}/lib
 
 %if "%{_dist_ver}" == ".el5"
 # require EPEL
