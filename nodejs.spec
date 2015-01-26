@@ -23,6 +23,11 @@ BuildRequires: zlib-devel
 BuildRequires: gzip
 BuildRequires: rpmdevtools
 
+%define   _prefix /data/%{_base}js-0.10
+%define   _includedir %{_prefix}/include
+%define   _bindir %{_prefix}/bin
+%define   _libdir %{_prefix}/lib
+
 %if "%{_dist_ver}" == ".el5"
 # require EPEL
 BuildRequires: python26
