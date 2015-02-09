@@ -1,9 +1,6 @@
 %define   _base node
 %define   _dist_ver %(sh /usr/lib/rpm/redhat/dist.sh)
 
-%global tapsetroot /usr/share/systemtap
-%global tapsetdir %{tapsetroot}/tapset/%{_build_cpu}
-
 Name:          %{_base}js12
 Version:       0.12.0
 Release:       1%{?dist}
@@ -30,6 +27,9 @@ BuildRequires: rpmdevtools
 %define   _includedir %{_prefix}/include
 %define   _bindir %{_prefix}/bin
 %define   _libdir %{_prefix}/lib
+
+%global tapsetroot %{_prefix}/share/systemtap
+%global tapsetdir %{tapsetroot}/tapset/%{_build_cpu}
 
 %if "%{_dist_ver}" == ".el5"
 # require EPEL
