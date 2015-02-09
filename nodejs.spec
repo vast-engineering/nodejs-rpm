@@ -1,8 +1,11 @@
 %define   _base node
 %define   _dist_ver %(sh /usr/lib/rpm/redhat/dist.sh)
 
-Name:          %{_base}js10
-Version:       0.10.37
+%global tapsetroot /usr/share/systemtap
+%global tapsetdir %{tapsetroot}/tapset/%{_build_cpu}
+
+Name:          %{_base}js12
+Version:       0.12.0
 Release:       1%{?dist}
 Summary:       Node.js is a server-side JavaScript environment that uses an asynchronous event-driven model.
 Packager:      Kazuhisa Hara <kazuhisya@gmail.com>
@@ -23,7 +26,7 @@ BuildRequires: zlib-devel
 BuildRequires: gzip
 BuildRequires: rpmdevtools
 
-%define   _prefix /data/%{_base}js-0.10
+%define   _prefix /data/%{_base}js-0.12
 %define   _includedir %{_prefix}/include
 %define   _bindir %{_prefix}/bin
 %define   _libdir %{_prefix}/lib
@@ -161,10 +164,16 @@ rm -rf $RPM_SOURCE_DIR/%{_base}-v%{version}-linux-%{_node_arch}
 
 %files devel
 %{_includedir}/node/
+%{tapsetroot}
 
 %changelog
 * Tue Feb  9 2015 J. Ryan Earl <jre@vast.com>
+- Version bump to 0.12.0
+- modified package name to nodejs12
+- took systemtap modifications from kazuhisya's tree
+* Tue Feb  9 2015 J. Ryan Earl <jre@vast.com>
 - Version bump to 0.10.37
+- made nodejs-10 branch for old nodejs10 packages
 * Tue Dec 19 2014 J. Ryan Earl <jre@vast.com>
 - Version bump to 0.10.34
 * Tue Dec 16 2014 J. Ryan Earl <jre@vast.com>
