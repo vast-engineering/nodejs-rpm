@@ -167,7 +167,7 @@ rm -rf $RPM_SOURCE_DIR/%{_base}-v%{version}-linux-%{_node_arch}
 %{tapsetroot}
 
 %changelog
-* Tue June  15 2015 J. Ryan Earl <jre@vast.com>
+* Tue Jun  15 2015 J. Ryan Earl <jre@vast.com>
 - Version bump to 0.12.4
 * Tue Apr  20 2015 J. Ryan Earl <jre@vast.com>
 - Version bump to 0.12.2
